@@ -18,10 +18,7 @@ jobs:
       - name: Check changes
         id: final_check
         run: |
-          if [[ -f file-diff.txt && -s file-diff.txt ]]; then
-            echo "result=true" >> $GITHUB_OUTPUT
-          else
-            echo "result=false" >> $GITHUB_OUTPUT
+          if [[ !-f file-diff.txt || ! -s file-diff.txt ]]; then
             gh run cancel ${{ github.run_id }} --repo ${{ github.repository }}
             gh run watch ${{ github.run_id }} --repo ${{ github.repository }}
           fi
