@@ -15,11 +15,6 @@ jobs:
 
     steps:
 
-      - name: Generate content diff
-        id: generate_diff
-        run: |
-          echo "" > file-diff.txt
-
       - name: Check changes
         id: final_check
         run: |
