@@ -32,12 +32,11 @@ jobs:
           fi
 
       - name: Upload diff file if changed
-        if: steps.final_check.outputs.result == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: file-diff
           path: file-diff.txt
 
       - name: Setup uv
-        uses: echo A
+        run: echo A
 
