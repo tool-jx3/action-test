@@ -1,0 +1,43 @@
+
+name: test
+
+on:
+  push:
+
+  workflow_dispatch:
+
+permissions:
+  actions: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Generate content diff
+        id: generate_diff
+        run: |
+          echo "" > file-diff.txt
+
+      - name: Check changes
+        id: final_check
+        run: |
+          if [[ -f file-diff.txt && -s file-diff.txt ]]; then
+            echo "result=true" >> $GITHUB_OUTPUT
+          else
+            echo "result=false" >> $GITHUB_OUTPUT
+            gh run cancel ${{ github.run_id }}
+            gh run watch ${{ github.run_id }}
+          fi
+
+      - name: Upload diff file if changed
+        if: steps.final_check.outputs.result == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: file-diff
+          path: file-diff.txt
+
+      - name: Setup uv
+        uses: echo A
+
