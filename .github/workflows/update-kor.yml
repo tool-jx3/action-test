@@ -25,6 +25,8 @@ jobs:
             gh run cancel ${{ github.run_id }}
             gh run watch ${{ github.run_id }}
           fi
+        env:
+          GH_TOKEN: ${{ github.token }}
 
       - name: Upload diff file if changed
         uses: actions/upload-artifact@v4
