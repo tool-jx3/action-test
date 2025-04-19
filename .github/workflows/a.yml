@@ -3,11 +3,11 @@ name: A
 on:
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   a:
-    permissions:
-      contents: write
-
     runs-on: ubuntu-latest
     steps:
 
