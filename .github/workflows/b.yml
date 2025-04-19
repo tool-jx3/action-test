@@ -1,0 +1,14 @@
+name: B
+
+on:
+  workflow_dispatch:
+  repository_dispatch:
+    types: [trigger-b]
+
+jobs:
+  b:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: repository_dispatch
+      run: echo b
