@@ -5,9 +5,11 @@ on:
 
 jobs:
   a:
+    permissions:
+      contents: write
+
     runs-on: ubuntu-latest
     steps:
-
 
     - name: Release Dispatch
       uses: peter-evans/repository-dispatch@v3
